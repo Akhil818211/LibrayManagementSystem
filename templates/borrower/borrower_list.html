@@ -1,22 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Borrower List</h2>
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Book</th>
-        <th>Borrowed Date</th>
-        <th>Actions</th>
-    </tr>
-    {% for borrower in borrowers %}
-    <tr>
-        <td>{{ borrower.name }}</td>
-        <td>{{ borrower.email }}</td>
-        <td>{{ borrower.book.title }}</td>
-        <td>{{ borrower.borrowed_date }}</td>
-        <td><a href="{% url 'update_borrowed_date' borrower.id %}">Edit</a></td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">📚 Borrower List</h2>
+
+  <div class="overflow-x-auto rounded-lg shadow-lg">
+    <table class="min-w-full divide-y divide-gray-200 bg-white dark:bg-gray-900">
+      <thead class="bg-gray-100 dark:bg-gray-800">
+        <tr>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase">Name</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase">Email</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase">Book</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase">Borrowed Date</th>
+          <th class="px-6 py-3 text-center text-sm font-semibold text-gray-600 dark:text-gray-300 uppercase">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+        {% for borrower in borrowers %}
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+          <td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ borrower.name }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ borrower.email }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ borrower.book.title }}</td>
+          <td class="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">{{ borrower.borrowed_date }}</td>
+          <td class="px-6 py-4 text-center">
+            <a href="{% url 'update_borrowed_date' borrower.id %}" class="inline-block px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow">
+              Edit
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="text-center px-6 py-4 text-gray-500 dark:text-gray-400">No borrowers found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}
