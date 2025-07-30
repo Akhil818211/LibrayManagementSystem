@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Borrower List</h2>
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Book</th>
+        <th>Borrowed Date</th>
+        <th>Actions</th>
+    </tr>
+    {% for borrower in borrowers %}
+    <tr>
+        <td>{{ borrower.name }}</td>
+        <td>{{ borrower.email }}</td>
+        <td>{{ borrower.book.title }}</td>
+        <td>{{ borrower.borrowed_date }}</td>
+        <td><a href="{% url 'update_borrowed_date' borrower.id %}">Edit</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

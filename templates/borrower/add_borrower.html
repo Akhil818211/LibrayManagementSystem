@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">➕ Add Borrower</h2>
+
+<form method="post" style="max-width: 500px;">
+    {% csrf_token %}
+    
+    <div style="margin-bottom: 1rem;">
+        <label for="id_name" style="font-weight: 600;">Name</label><br>
+        {{ form.name }}
+    </div>
+    
+    <div style="margin-bottom: 1rem;">
+        <label for="id_email" style="font-weight: 600;">Email</label><br>
+        {{ form.email }}
+    </div>
+    
+    <div style="margin-bottom: 1rem;">
+        <label for="id_book" style="font-weight: 600;">Select Book</label><br>
+        {{ form.book }}
+    </div>
+    
+    <div style="margin-bottom: 1rem;">
+        <label for="id_borrowed_date" style="font-weight: 600;">Borrowed Date</label><br>
+        {{ form.borrowed_date }}
+    </div>
+    
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
